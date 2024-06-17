@@ -3,6 +3,7 @@ const cors = require('cors')
 const dbConnect = require('./databaseConfig/databseConnectionString')
 const app = express()
 const routes = require('./routes')
+const port = process.env.PORT || 4000
 
 app.use(cors())
 
@@ -16,6 +17,6 @@ app.use('/', (req,res)=>{
     res.send({erro: 'No api found'})
 })
 
-app.listen(3000, ()=>{
+app.listen(port, ()=>{
     console.log('Server running on port 3000.')
 })
