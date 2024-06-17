@@ -2,7 +2,11 @@ import Flex from "./components/Flex"
 import { FaCircleMinus } from "react-icons/fa6"
 import axios from "axios"
 
+
+
 function App() {
+	const database_url = import.meta.env.VITE_BACKEND_DATABASE_URL
+
 	let [todoData, setTodoData] = useState("")
 	let [dataArr, setDataArr] = useState([])
 	let [updatePage, setUpdatePage] = useState(false)
@@ -19,7 +23,7 @@ function App() {
 	let handleSubmit = (e) => {
 		if (todoData) {
 			axios
-				.post("http://localhost:3000/api/todo", {
+				.post(`${database_url}api/todo`, {
 					data: todoData,
 				})
 				.then((data) => {
@@ -36,7 +40,7 @@ function App() {
 	}
 	let handleDelete = (id, index) => {
 		axios
-			.delete("http://localhost:3000/api/delete_todo", {
+			.delete(`${database_url}api/delete_todo`, {
 				data: { id },
 			})
 			.then((data) => {
@@ -55,7 +59,7 @@ function App() {
 	let handleUpdate = () => {
 		if (updateData) {
 			axios
-				.put("http://localhost:3000/api/update_data", {
+				.put(`${database_url}api/update_data`, {
 					id: updateId,
 					todo: updateData,
 				})
@@ -92,7 +96,7 @@ function App() {
 
 	useEffect(() => {
 		async function getTodoDataFunction() {
-			let getTodoData = await axios.get("http://localhost:3000/api/get_todos")
+			let getTodoData = await axios.get(`${database_url}api/get_todos`)
 			setDataArr(getTodoData.data)
 		}
 		if (!deleteItem) {
