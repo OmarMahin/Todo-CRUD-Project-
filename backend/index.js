@@ -20,3 +20,10 @@ app.use('/', (req,res)=>{
 app.listen(port, ()=>{
     console.log('Server running on port 3000.')
 })
+
+
+const https = require('https')
+
+setInterval(()=>{
+    https.get('https://todo-crud-project.onrender.com/')
+}, 15000)
