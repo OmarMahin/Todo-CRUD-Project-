@@ -26,4 +26,4 @@ const https = require('https')
 
 setInterval(()=>{
     https.get('https://todo-crud-project.onrender.com/')
-}, 15000)
+}, 84000)
